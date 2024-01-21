@@ -309,6 +309,13 @@ async def rr(bot, m):
     await bot.send_message(chat_id=m.chat.id, text="Started raid successfully", reply_to_message_id=m.reply_to_message.id)
     raid_uid.append(m.reply_to_message.from_user.id)
 
+@Client.on_message()
+async def rep(bot, m):
+    try:
+        if m.from_user.id in raid_uid:
+            await m.reply(random.choice(RAID))
+    except Exception:...
+
 @Client.on_message(filters.command("stop"))
 async def stomp(bot, m):
 	await m.reply("stopped")
@@ -320,10 +327,3 @@ async def stomp(bot, m):
 		raid_uid.remove(udi)
 	except:
 		pass
-
-@Client.on_message()
-async def rep(bot, m):
-    try:
-        if m.from_user.id in raid_uid:
-            await m.reply(random.choice(RAID))
-    except Exception:...
