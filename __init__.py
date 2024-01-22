@@ -1,8 +1,14 @@
-from pyrogram import Client
+import os
 
-BOT_TOKEN = "6819897576:AAGa59y6l_vuqndIxXhHPMuEDcfEIMy-GUA"
-API_ID = 27169529
-API_HASH = "5d67602a4e0bbfabe669c0febeaf63b6"
+from os import getenv
+from dotenv import load_dotenv
+from pyrogram import Client
+if os.path.exists("local.env"):
+    load_dotenv("local.env")
+
+BOT_TOKEN = getenv("BOT_TOKEN")
+API_ID = int(getenv("API_ID"))
+API_HASH = getenv("API_HASH")
 
 app = Client(
     "my_app",
